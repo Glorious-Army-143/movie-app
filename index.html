@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Explorer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://kit.fontawesome.com/c758554bf7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon"><i class="fa-solid fa-film"></i></div>
+      <h1>Movie Explorer</h1>
+    </div>
+
+    <div class="topbar-actions">
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
+        <i class="fa-regular fa-moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="app-layout">
+    <aside class="sidebar">
+      <nav>
+        <a href="#" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="#results" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i> Discover</a>
+        <a href="#watchlist-section" class="nav-link"><i class="fa-solid fa-bookmark"></i> Watchlist</a>
+      </nav>
+    </aside>
+
+    <section class="content">
+      <section class="hero">
+        <div class="hero-text">
+          <p class="hero-tag">Your cinema hub</p>
+          <h2>Search, discover, and save movies in style</h2>
+          <p class="hero-sub">
+            Explore your favorite titles with a modern movie experience inspired by streaming platforms.
+          </p>
+        </div>
+      </section>
+
+      <section class="search-panel">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search movies like Inception, Avatar, Interstellar..."
+          />
+          <button id="searchBtn">Search</button>
+        </div>
+
+        <div class="chips">
+          <button class="chip" data-query="Action">Action</button>
+          <button class="chip" data-query="Comedy">Comedy</button>
+          <button class="chip" data-query="Adventure">Adventure</button>
+          <button class="chip" data-query="Marvel">Marvel</button>
+          <button class="chip" data-query="Batman">Batman</button>
+          <button class="chip" data-query="Animation">Animation</button>
+        </div>
+
+        <p id="statusMessage" class="status"></p>
+      </section>
+
+      <section id="results" class="section-block">
+        <div class="section-head">
+          <h2>Search Results</h2>
+          <span id="resultCount" class="section-meta"></span>
+        </div>
+        <div id="movieGrid" class="grid"></div>
+      </section>
+
+      <section id="watchlist-section" class="section-block">
+        <div class="section-head">
+          <h2>My Watchlist</h2>
+          <span class="section-meta">This session only</span>
+        </div>
+        <div id="watchlistGrid" class="grid"></div>
+        <div id="watchlistEmpty" class="empty-state">
+          <i class="fa-regular fa-bookmark"></i>
+          <p>Your watchlist is empty.</p>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Movie Details Modal -->
+  <div id="movieModal" class="modal hidden">
+    <div class="modal-content">
+      <button id="closeModal" class="close-modal">&times;</button>
+
+      <div class="modal-header">
+        <img id="modalPoster" src="" alt="Movie poster" />
+        <div class="modal-info">
+          <h2 id="modalTitle">Movie Title</h2>
+          <p id="modalOverview">Movie overview will appear here.</p>
+          <div id="modalMeta" class="modal-meta"></div>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h3>Characters / Cast</h3>
+        <div id="castList" class="cast-list"></div>
+      </div>
+
+      <div class="modal-section">
+        <h3>Trailer</h3>
+        <div id="trailerContainer" class="trailer-box"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

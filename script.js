@@ -25,7 +25,39 @@ const TMDB_PROFILE_BASE = 'https://image.tmdb.org/t/p/w185';
 
 let watchlist = [];
 
+function saveWatchlist() {
+  localStorage.setItem('movieWatchlist', JSON.stringify(watchlist));
+}
+
+function loadWatchlist() {
+  const savedWatchlist = localStorage.getItem('movieWatchlist');
+  if (savedWatchlist) {
+    watchlist = JSON.parse(savedWatchlist);
+    updateWatchlist();
+  }
+}
+
 /* Theme Toggle */
+function saveTheme(theme) {
+  localStorage.setItem('movieTheme', theme);
+}
+
+function loadTheme() {
+  const savedTheme = localStorage.getItem('movieTheme');
+  const icon = themeToggle.querySelector('i');
+
+  if (savedTheme === 'light') {
+    body.setAttribute('data-theme', 'light');
+    icon.className = 'fa-regular fa-sun';
+  } else {
+    body.removeAttribute('data-theme');
+    icon.className = 'fa-regular fa-moon';
+  }
+}
+
+
+
+
 themeToggle.addEventListener('click', () => {
   const icon = themeToggle.querySelector('i');
   const isLight = body.getAttribute('data-theme') === 'light';
@@ -33,9 +65,11 @@ themeToggle.addEventListener('click', () => {
   if (isLight) {
     body.removeAttribute('data-theme');
     icon.className = 'fa-regular fa-moon';
+    saveTheme('dark');
   } else {
     body.setAttribute('data-theme', 'light');
     icon.className = 'fa-regular fa-sun';
+    saveTheme('light');
   }
 });
 
@@ -205,12 +239,14 @@ function addToWatchlist(id, title, poster) {
   }
 
   watchlist.push({ id, title, poster });
+  saveWatchlist();
   updateWatchlist();
   statusMessage.textContent = `"${title}" added to watchlist.`;
 }
 
 function removeFromWatchlist(id) {
   watchlist = watchlist.filter(movie => movie.id !== id);
+  saveWatchlist();
   updateWatchlist();
 }
 
@@ -309,3 +345,9 @@ function escapeHtml(text) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 }
+
+/* Load saved watchlist on page load */
+loadWatchlist();
+
+loadTheme();
+loadWatchlist();

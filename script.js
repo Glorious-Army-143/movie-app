@@ -23,6 +23,11 @@ const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w500';
 const TMDB_PROFILE_BASE = 'https://image.tmdb.org/t/p/w185';
 
+const backBtn = document.getElementById('backBtn');
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+
 let watchlist = [];
 
 function saveWatchlist() {
@@ -36,6 +41,35 @@ function loadWatchlist() {
     updateWatchlist();
   }
 }
+
+/* Back Button */
+backBtn.addEventListener('click', () => {
+  if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    window.location.href = 'index.html';
+  }
+});
+
+/* Mobile Sidebar */
+menuToggle.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+  sidebarOverlay.classList.toggle('show');
+});
+
+sidebarOverlay.addEventListener('click', () => {
+  sidebar.classList.remove('open');
+  sidebarOverlay.classList.remove('show');
+});
+
+/* Close sidebar when a nav link is clicked on mobile */
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    sidebarOverlay.classList.remove('show');
+  });
+});
+
 
 /* Theme Toggle */
 function saveTheme(theme) {

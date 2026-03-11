@@ -87,6 +87,16 @@ body {
   gap: 10px;
 }
 
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-only {
+  display: none;
+}
+
 .icon-btn {
   width: 42px;
   height: 42px;
@@ -116,6 +126,10 @@ body {
   position: sticky;
   top: 64px;
   height: calc(100vh - 64px);
+}
+
+.sidebar-overlay {
+  display: none;
 }
 
 .sidebar nav {
@@ -500,7 +514,7 @@ body {
 .cast-card .cast-info {
   padding: 12px;
 }
-
+ 
 .cast-card h4 {
   margin: 0 0 6px;
   font-size: 0.95rem;
@@ -532,8 +546,35 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .mobile-only {
+    display: inline-flex;
+  }
+
   .sidebar {
-    display: none;
+    display: block;
+    position: fixed;
+    top: 64px;
+    left: -260px;
+    width: 240px;
+    height: calc(100vh - 64px);
+    z-index: 1500;
+    transition: left 0.3s ease;
+    box-shadow: var(--shadow);
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    inset: 64px 0 0 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1400;
+  }
+
+  .sidebar-overlay.show {
+    display: block;
   }
 
   .content {

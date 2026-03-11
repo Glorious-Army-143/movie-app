@@ -9,12 +9,24 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="brand">
-      <div class="brand-icon"><i class="fa-solid fa-film"></i></div>
-      <h1>Movie Explorer</h1>
+    <div class="topbar-left">
+      <button id="backBtn" class="icon-btn" aria-label="Go back">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-film"></i>
+        </div>
+        <h1>Movie Explorer</h1>
+      </div>
     </div>
 
     <div class="topbar-actions">
+      <button id="menuToggle" class="icon-btn mobile-only" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
       <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
         <i class="fa-regular fa-moon"></i>
       </button>
@@ -22,13 +34,21 @@
   </header>
 
   <main class="app-layout">
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
       <nav>
-        <a href="#" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="#results" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i> Discover</a>
-        <a href="#watchlist-section" class="nav-link"><i class="fa-solid fa-bookmark"></i> Watchlist</a>
+        <a href="#" class="nav-link active">
+          <i class="fa-solid fa-house"></i> Home
+        </a>
+        <a href="#results" class="nav-link">
+          <i class="fa-solid fa-magnifying-glass"></i> Discover
+        </a>
+        <a href="#watchlist-section" class="nav-link">
+          <i class="fa-solid fa-bookmark"></i> Watchlist
+        </a>
       </nav>
     </aside>
+
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
     <section class="content">
       <section class="hero">
@@ -36,7 +56,7 @@
           <p class="hero-tag">Your cinema hub</p>
           <h2>Search, discover, and save movies in style</h2>
           <p class="hero-sub">
-            Explore your favorite titles with a modern movie experience inspired by streaming platforms.
+            Explore your favorite titles with a modern movie experience inspired by streaming platforms Created by Group 4.
           </p>
         </div>
       </section>
@@ -75,9 +95,10 @@
       <section id="watchlist-section" class="section-block">
         <div class="section-head">
           <h2>My Watchlist</h2>
-          <span class="section-meta">This session only</span>
+          <span class="section-meta">Saved in this browser</span>
         </div>
         <div id="watchlistGrid" class="grid"></div>
+
         <div id="watchlistEmpty" class="empty-state">
           <i class="fa-regular fa-bookmark"></i>
           <p>Your watchlist is empty.</p>
@@ -89,10 +110,13 @@
   <!-- Movie Details Modal -->
   <div id="movieModal" class="modal hidden">
     <div class="modal-content">
-      <button id="closeModal" class="close-modal">&times;</button>
+      <button id="closeModal" class="close-modal" aria-label="Close modal">
+        &times;
+      </button>
 
       <div class="modal-header">
         <img id="modalPoster" src="" alt="Movie poster" />
+
         <div class="modal-info">
           <h2 id="modalTitle">Movie Title</h2>
           <p id="modalOverview">Movie overview will appear here.</p>
